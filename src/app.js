@@ -7,6 +7,10 @@ dotenv.config();
 
 const app = express();
 
+//Express does not return a json format by default
+//so to get a json format we need to do the following below.
+app.use(express.json());
+
 //middleware
 app.use(morgan('dev'));
 
@@ -14,7 +18,7 @@ app.use(morgan('dev'));
 app.use(router);
 
 //connecting to db
-mongoose.connect(process.env.MONGO_DB_CLOUD)
+mongoose.connect(process.env.MONGO_DB_CONNECTION)
     .then(() => {
         //-----------------
         console.log('Db Connected!!')
@@ -27,6 +31,11 @@ mongoose.connect(process.env.MONGO_DB_CLOUD)
     })
     .catch(err => console.log(`Db Connection error: ${err.message}`));
 
+    /*
+    this line is required, because i want to dynamically create a db in my mongodb movie_api_dev connection.
+    i have to first put the name of the db immediately after the forward slash and before the question mark.
+    */
+require("../src/models/movie.model");
 
 
 
