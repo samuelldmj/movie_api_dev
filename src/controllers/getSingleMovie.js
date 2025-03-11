@@ -3,10 +3,10 @@ const mongoose = require("mongoose");
 
 const getSingleMovieController = async (req, res) => {
     // Retrieve id from request URL
-    const idFromReqParams = req.params.movie_id;
+    const movieIdFromParams = req.params.movie_id;
 
     // Validate the ObjectId
-    if (!mongoose.Types.ObjectId.isValid(idFromReqParams)) {
+    if (!mongoose.Types.ObjectId.isValid(movieIdFromParams)) {
         return res.status(400).json({
             status: "failed",
             message: "Invalid movie ID format."
@@ -15,7 +15,7 @@ const getSingleMovieController = async (req, res) => {
 
     try {
         // Find the movie by ID
-        const movieData = await movieModel.findOne({ _id: idFromReqParams });
+        const movieData = await movieModel.findOne({ _id: movieIdFromParams });
 
         // Check if the movie was found
         if (!movieData) {
