@@ -1,6 +1,8 @@
 
 const express = require('express');
-const { addMovieController } = require('../controllers/addMovie');
+const { addMovieController } = require('../controllers/addMovieController');
+const { getAllMoviesController } = require('../controllers/getAllMoviesController');
+const { getSingleMovieController } = require('../controllers/getSingleMovie');
 
 const router = express.Router();
 
@@ -14,6 +16,8 @@ router.get('/api', (_, res) =>{
 
 
 router.post('/api/movies', addMovieController);
+router.get('/api/movies', getAllMoviesController);
+router.get('/api/movies/:movie_id', getSingleMovieController);
 
 module.exports = {
     router
