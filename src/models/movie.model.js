@@ -2,7 +2,8 @@ const { Mongoose, default: mongoose } = require("mongoose");
 
 const moviesSchema = new mongoose.Schema({
         movie_name : {
-            type : String
+            type : String,
+            required : [true, "Movie name is required"]
         },
         info : {
             type : String
