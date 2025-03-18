@@ -1,9 +1,10 @@
+const dotenv = require('dotenv');
+dotenv.config();
 const express = require('express');
 const morgan = require('morgan');
 const { router } = require('./routes/route');
-const dotenv = require('dotenv');
 const mongoose = require('mongoose');
-dotenv.config();
+
 
 const app = express();
 
